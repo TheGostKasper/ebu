@@ -5,39 +5,12 @@ import {
   Library,
 } from "../types/groupAccount";
 
-export const fetchGroupAccounts = async (): Promise<GroupAccount[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(generateSampleData(15));
-    }, 1000);
-  });
-};
-
-export const fetchEmployeeData = async (): Promise<Department[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(generateEmployeeData(15));
-    }, 1000);
-  });
-};
-export const fetchLibraryData = async (): Promise<Library[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(generateLibraryData(15));
-    }, 1000);
-  });
-};
-
-export const fetchITAssetData = async (): Promise<ITDepartment[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(generateITAssetData(15));
-    }, 1000);
-  });
-};
+let sampleData: GroupAccount[] = [];
 
 const generateSampleData = (numGroups: number): GroupAccount[] => {
-  const sampleData: GroupAccount[] = [];
+  if (sampleData.length > 0) {
+    return sampleData;
+  }
   for (let i = 1; i <= numGroups; i++) {
     const groupAccount: GroupAccount = {
       id: `24141${1000 + i}`,
@@ -63,6 +36,7 @@ const generateSampleData = (numGroups: number): GroupAccount[] => {
   }
   return sampleData;
 };
+sampleData = generateSampleData(100) || [];
 
 const generateEmployeeData = (numDepartments: number): Department[] => {
   const roles = ["Developer", "Designer", "Manager", "Analyst", "Engineer"];
@@ -167,5 +141,101 @@ const generateITAssetData = (numDepartments: number): ITDepartment[] => {
         };
       }),
     };
+  });
+};
+
+export const fetchGroupAccounts = async (): Promise<GroupAccount[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(sampleData);
+    }, 1000);
+  });
+};
+
+export const fetchAccounts = async ({
+  page,
+  pageSize,
+  search,
+}: {
+  page: number;
+  pageSize: number;
+  search: string;
+}): Promise<{ items: GroupAccount[]; total: number }> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Filter based on search term
+      const filteredData = search
+        ? sampleData.filter((group) =>
+            group.name.toLowerCase().includes(search.toLowerCase())
+          )
+        : sampleData;
+
+      // Paginate the filtered data
+      const start = (page - 1) * pageSize;
+      const paginatedData = filteredData.slice(start, start + pageSize);
+
+      resolve({
+        items: paginatedData,
+        total: filteredData.length, // Total count of filtered data
+      });
+    }, 1000); // Simulate network delay
+  });
+};
+
+export const getMsisdns = async ({
+  page,
+  pageSize,
+  sort,
+  groupId,
+}: {
+  page: number;
+  pageSize: number;
+  sort: { field: string; type: "asc" | "desc" | "" };
+  groupId?: string;
+}): Promise<{ items: GroupAccount["msisdns"]; total: number }> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Find the group by ID
+      const group = sampleData.find((g) => g.id === groupId);
+
+      if (!group) {
+        return resolve({ items: [], total: 0 });
+      }
+
+      // Sort msisdns if sorting is applied - implement in the future
+      const sortedMsisdns = group.msisdns;
+
+      // Paginate msisdns
+      const start = (page - 1) * 10; // Default page size for msisdns
+      const paginatedMsisdns = sortedMsisdns.slice(start, start + pageSize);
+
+      resolve({
+        items: paginatedMsisdns,
+        total: sortedMsisdns.length,
+      });
+    }, 1000); // Simulate network delay
+  });
+};
+
+export const fetchEmployeeData = async (): Promise<Department[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(generateEmployeeData(15));
+    }, 1000);
+  });
+};
+export const fetchLibraryData = async (): Promise<Library[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(generateLibraryData(15));
+    }, 1000);
+  });
+};
+
+export const fetchITAssetData = async (): Promise<ITDepartment[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(generateITAssetData(15));
+    }, 1000);
   });
 };

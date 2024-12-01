@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DepartmentTable from "../components/Tables/DepartmentTable";
 import MobilityTable from "../components/Tables/MobilityTable";
 import { useBreadcrumbStore } from "../store/useAppStore";
+import DynamicTable from "../components/Tables/DynamicTable";
 
 const Home: React.FC = () => {
   const title = "Dashboard";
@@ -37,12 +38,17 @@ const Home: React.FC = () => {
           label="Dep Table"
           sx={{ textTransform: "none", fontWeight: "bold" }}
         />
+        <Tab
+          label="Split Table"
+          sx={{ textTransform: "none", fontWeight: "bold" }}
+        />
       </Tabs>
 
       {/* Tab Content */}
       <Box sx={{ mt: 3 }}>
         {activeTab === 0 && <MobilityTable />}
         {activeTab === 1 && <DepartmentTable />}
+        {activeTab === 2 && <DynamicTable />}
       </Box>
     </div>
   );

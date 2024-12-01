@@ -1,5 +1,6 @@
 import React from "react";
 import { useBreadcrumbStore } from "../store/useAppStore";
+import CardSection from "../components/CardSection";
 
 const Settings: React.FC = () => {
   const title = "Settings";
@@ -12,6 +13,7 @@ const Settings: React.FC = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Settings</h1>
+      <CardSection />
     </div>
   );
 };

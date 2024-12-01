@@ -9,8 +9,6 @@ const Title = () => {
 
 const Header = () => {
   const { toggleNav } = useAppStore();
-  console.count("Header rendered");
-
   return (
     <header className="bg-white shadow-sm">
       <div className="px-4">

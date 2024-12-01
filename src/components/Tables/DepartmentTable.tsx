@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDepartmentStore } from "../../store/group-account-store";
 import { Column, Department, Employee } from "../../types/groupAccount";
-import { SplitViewTable } from "../Generics/SplitTable";
+import { SplitViewTable } from "../SplitTableView/SplitTable";
 
 const departmentColumns: Column<Employee>[] = [
   { header: "First Name", accessor: "firstName" },

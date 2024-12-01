@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+
 import { useGroupAccountStore } from "../../store/group-account-store";
 import { Column } from "../../types/groupAccount";
-import { SplitViewTable } from "../Generics/SplitTable";
+import { SplitViewTable } from "../SplitTableView/SplitTable";
 
 interface GroupAccount {
   id: string;
@@ -68,5 +69,7 @@ const MobilityTable = () => {
     />
   );
 };
+
+
 
 export default MobilityTable;
