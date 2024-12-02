@@ -5,6 +5,7 @@ export interface MSISDN {
   mobility: string;
   broadbandIdentifier: string;
   address: string;
+  newItemConfig: string;
 }
 
 export interface GroupAccount {

@@ -24,7 +24,7 @@ const DynamicSplitTableView = <TGroup, TRow>({
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 p-4 space-x-0 md:space-x-4 space-y-4 md:space-y-0 overflow-hidden">
-      <div className="w-full md:w-1/4 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-[calc(100vh-20rem)]">
+      <div className="w-full md:w-1/4 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-[calc(100vh-130px)]">
         <div className="p-4 bg-gray-50 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-800">{groupTitle}</h2>
         </div>
@@ -35,7 +35,7 @@ const DynamicSplitTableView = <TGroup, TRow>({
           onGroupSelect={setSelectedGroup}
         />
       </div>
-      <div className="w-full md:w-3/4 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-[calc(100vh-20rem)]">
+      <div className="w-full md:w-3/4 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 flex flex-col h-[calc(100vh-130px)]">
         <div className="p-4 bg-gray-50 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-800">
             {selectedGroup && renderRowHeader

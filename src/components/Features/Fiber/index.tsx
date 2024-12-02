@@ -1,30 +1,18 @@
-import { Box, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
-import DepartmentTable from "../components/Tables/DepartmentTable";
-import MobilityTable from "../components/Tables/MobilityTable";
-import { useBreadcrumbStore } from "../store/useAppStore";
-import DynamicTable from "../components/Tables/DynamicTable";
+import { Box, Tab, Tabs } from "@mui/material";
+import DepartmentTable from "../../Tables/DepartmentTable";
+import MobilityTable from "../../Tables/MobilityTable";
+import DynamicFiberTable from "../../Tables/FiberTable";
 
-const Home: React.FC = () => {
-  const title = "Dashboard";
-  const { setTitle } = useBreadcrumbStore();
-
+const FiberDashboard = () => {
   const [activeTab, setActiveTab] = useState(0);
-
-  React.useEffect(() => {
-    setTitle(title);
-  }, [setTitle]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
-
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Welcome to the Dashboard</h1>
-
-      {/* Tabs Component */}
-      <Tabs
+      <Tabs 
         value={activeTab}
         onChange={handleChange}
         aria-label="dashboard-tabs"
@@ -44,14 +32,13 @@ const Home: React.FC = () => {
         />
       </Tabs>
 
-      {/* Tab Content */}
       <Box sx={{ mt: 3 }}>
         {activeTab === 0 && <MobilityTable />}
         {activeTab === 1 && <DepartmentTable />}
-        {activeTab === 2 && <DynamicTable />}
+        {activeTab === 2 && <DynamicFiberTable />}
       </Box>
     </div>
   );
 };
 
-export default Home;
+export default FiberDashboard;

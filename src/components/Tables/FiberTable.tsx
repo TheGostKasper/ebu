@@ -16,19 +16,27 @@ const renderRowDetails = (msisdn: MSISDN) => (
         <p className="font-medium text-gray-600">Plan Name:</p>
         <p className="text-gray-800">{msisdn.planName}</p>
       </div>
+      <div>
+        <p className="font-medium text-gray-600">Speed:</p>
+        <p className="text-gray-800">{msisdn.speed}</p>
+      </div>
+      <div>
+        <p className="font-medium text-gray-600">Broadband Identifier:</p>
+        <p className="text-gray-800">{msisdn.broadbandIdentifier}</p>
+      </div>
     </div>
   </div>
 );
 
-const DynamicTable = () => {
+const DynamicFiberTable = () => {
   return (
     <DynamicSplitTableView<GroupAccount, MSISDN>
-      groupTitle="Group Accounts"
+      groupTitle="Fibe Group Account"
       fetchGroups={fetchAccounts}
       fetchRows={getMsisdns}
       renderGroup={(group) => (
         <span>
-          {group.name} - {group.msisdns.length}
+          Hello {group.name} - {group.msisdns.length}
         </span>
       )}
       rowColumns={[
@@ -57,11 +65,16 @@ const DynamicTable = () => {
           accessor: "broadbandIdentifier",
           sortable: true,
         },
+        {
+          label: "Dummy Col",
+          accessor: "newItemConfig",
+          sortable: false,
+        },
       ]}
       renderRowHeader={(group) => {
         return (
           <span>
-            {group.name} - {group.msisdns.length}
+            Hello {group.name} - {group.msisdns.length}
           </span>
         );
       }}
@@ -70,4 +83,4 @@ const DynamicTable = () => {
   );
 };
 
-export default DynamicTable;
+export default DynamicFiberTable;

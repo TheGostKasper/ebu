@@ -1,13 +1,6 @@
+import { Activity, ChevronLeft, ChevronRight, Home } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Home,
-  Users,
-  Settings,
-  Activity,
-} from "lucide-react";
 import useAppStore from "../store/useAppStore";
 
 const SideNavigation: React.FC = () => {
@@ -15,9 +8,8 @@ const SideNavigation: React.FC = () => {
 
   const routes = [
     { name: "Dashboard", icon: <Activity size={24} />, path: "/" },
-    { name: "Table", icon: <Home size={24} />, path: "/home" },
-    { name: "Plan Cards", icon: <Settings size={24} />, path: "/settings" },
-    { name: "Users", icon: <Users size={24} />, path: "/users" },
+    { name: "Mobility", icon: <Home size={24} />, path: "/home" },
+    { name: "Fiber", icon: <Home size={24} />, path: "/fiber" },
   ];
 
   return (

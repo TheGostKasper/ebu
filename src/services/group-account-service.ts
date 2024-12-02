@@ -29,6 +29,7 @@ const generateSampleData = (numGroups: number): GroupAccount[] => {
         speed: `${[10, 25, 50, 100, 200][Math.floor(Math.random() * 5)]} Mbps`,
         broadbandIdentifier: `${1234000 + i * 100 + j}`,
         address: `Address ${i}-${j}`,
+        newItemConfig: `Config ${i}-${j}`,
       });
     }
 

@@ -47,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
           <ChevronLeft className="w-5 h-5" />
         </button>
         <span className="text-sm text-gray-600">
-          Page {currentPage} of {totalPages}
+          {currentPage}/{totalPages}
         </span>
         <button
           disabled={currentPage === totalPages}

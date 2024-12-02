@@ -1,57 +1,76 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
+import ProtectedRoute from "./ProtectedRoute"; // adjust the import path
+import Unauthorized from "../Auth/Unauthorized";
+import Login from "../Auth/Login";
+import FiberDashboard from "../components/Features/Fiber";
 
 const Dashboard = lazy(() => import("../pages/telecom-dashboard"));
-const Home = lazy(() => import("../pages/Home"));
+const Home = lazy(() => import("../pages/Mobility"));
 const Users = lazy(() => import("../pages/Users"));
 const Settings = lazy(() => import("../pages/Settings"));
-// const LoginPage = lazy(() => import("../pages/LoginPage"));
-// const UsersPage = lazy(() => import("../pages/UsersPage"));
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/unauthorized",
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Unauthorized />
+      </Suspense>
+    ),
+  },
+  {
     path: "/",
-    element: <AppLayout />,
+    element: <ProtectedRoute />,
     children: [
       {
-        index: true,
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: "home",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Home />
-          </Suspense>
-        ),
-      },
-      {
-        path: "users",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Users />
-          </Suspense>
-        ),
-      },
-      {
-        path: "settings",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Settings />
-          </Suspense>
-        ),
+        element: <AppLayout />,
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Dashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: "home",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Home />
+              </Suspense>
+            ),
+          },
+          {
+            path: "fiber",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <FiberDashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: "users",
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Users />
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <LoginPage />, // No need for protection on the login page
-  // },
 ]);
 
 export default router;
