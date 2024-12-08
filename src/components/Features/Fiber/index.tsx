@@ -3,8 +3,16 @@ import { Box, Tab, Tabs } from "@mui/material";
 import DepartmentTable from "../../Tables/DepartmentTable";
 import MobilityTable from "../../Tables/MobilityTable";
 import DynamicFiberTable from "../../Tables/FiberTable";
+import { useBreadcrumbStore } from "../../../store/useAppStore";
 
 const FiberDashboard = () => {
+  const title = "Fiber";
+  const { setTitle } = useBreadcrumbStore();
+
+  React.useEffect(() => {
+    setTitle(title);
+  }, [setTitle]);
+
   const [activeTab, setActiveTab] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

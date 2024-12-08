@@ -36,7 +36,7 @@ const DynamicFiberTable = () => {
       fetchRows={getMsisdns}
       renderGroup={(group) => (
         <span>
-          Hello {group.name} - {group.msisdns.length}
+          {group.name} - {group.msisdns.length}
         </span>
       )}
       rowColumns={[
@@ -74,7 +74,7 @@ const DynamicFiberTable = () => {
       renderRowHeader={(group) => {
         return (
           <span>
-            Hello {group.name} - {group.msisdns.length}
+            {group.name} - {group.msisdns.length}
           </span>
         );
       }}
